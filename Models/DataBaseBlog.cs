@@ -5,10 +5,10 @@ namespace Blog.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class Model1 : DbContext
+    public partial class DataBaseBlog : DbContext
     {
-        public Model1()
-            : base("name=DataBase")
+        public DataBaseBlog()
+            : base("name=DataBaseBlog")
         {
         }
 
