@@ -1,7 +1,7 @@
-﻿@model List<Blog.Models.Category>
+﻿@model List<Bloger.Models.Blogs>
 
 @{
-    ViewBag.Title = "Danh sách thể loại";
+    ViewBag.Title = "Danh sách bài viết";
     Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,37 +17,35 @@
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <h4 class="c-grey-900 mB-20">Danh sách thể loại</h4>
+                <h4 class="c-grey-900 mB-20">Danh sách bài viết</h4>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Mô tả</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Nội dung</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Người tạo</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var category in Model)
-                        {
-
+                        @foreach (var item in Model){
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => category.name)
+                                    @Html.DisplayFor(modelItem => item.title)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => category.description)
+                                    @Html.DisplayFor(modelItem => item.contents)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => category.create_at)
+                                    @Html.DisplayFor(modelItem => item.create_at)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => category.create_by)
+                                    @Html.DisplayFor(modelItem => item.create_by)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Sửa", "Edit", new { id = category.ID }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = category.ID })
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                                 </td>
                             </tr>
                         }
@@ -57,4 +55,3 @@
         </div>
     </div>
 </div>
-

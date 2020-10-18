@@ -1,0 +1,59 @@
+﻿@model List<Blog.Models.Blog>
+
+@{
+    ViewBag.Title = "Danh sách bài viết";
+    Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    @if (TempData["Msg"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["Msg"]</div>
+    }
+    <div class="row pL-15">
+        <h4 class="c-grey-900 mT-10 mB-30">@ViewBag.Title</h4>
+        @Html.ActionLink("Tạo mới", "Create", "Blog", new { }, new { @class = "btn btn-success mT-10 mB-30 mL-30" })
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="bgc-white bd bdrs-3 p-20 mB-20">
+                <h4 class="c-grey-900 mB-20">Danh sách bài viết</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Người tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var blog in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => blog.title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => blog.contents)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => blog.create_at)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => blog.create_by)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = blog.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = blog.ID })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

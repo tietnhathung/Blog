@@ -129,11 +129,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\web_admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\web_admin\Controllers\BlogsController.cs" />
     <Compile Include="Areas\web_admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\web_admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\web_admin\Data\categoriesData.cs" />
-    <Compile Include="Areas\web_admin\Data\blogsData.cs" />
+    <Compile Include="Areas\web_admin\Data\blogData.cs" />
     <Compile Include="Areas\web_admin\web_adminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,7 +171,7 @@
     <Content Include="Areas\web_admin\Views\Category\Create.cshtml" />
     <Content Include="Areas\web_admin\Views\Category\Edit.cshtml" />
     <Content Include="Areas\web_admin\Views\Category\Delete.cshtml" />
-    <Content Include="Areas\web_admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\web_admin\Views\Blogs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
