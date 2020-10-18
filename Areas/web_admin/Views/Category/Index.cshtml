@@ -5,13 +5,14 @@
     Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <div class="container-fluid">
-
-    <div class="row">
-            <h4 class="c-grey-900 mT-10 mB-30">@ViewBag.Title</h4>
-            @Html.ActionLink("Tạo mới", "Create", "Category" , new {}, new { @class = "btn btn-success mT-10 mB-30 mL-30" })
+    @if (TempData["Msg"] != null)
+    {
+        <div class="alert alert-success" role="alert">@TempData["Msg"]</div>
+    }
+    <div class="row pL-15">
+        <h4 class="c-grey-900 mT-10 mB-30">@ViewBag.Title</h4>
+        @Html.ActionLink("Tạo mới", "Create", "Category", new { }, new { @class = "btn btn-success mT-10 mB-30 mL-30" })
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -30,7 +31,7 @@
                     <tbody>
                         @foreach (var category in Model)
                         {
-                           
+
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => category.name)

@@ -38,7 +38,7 @@ namespace Blog.Areas.web_admin.Controllers
                 newCa.create_by = "1";
 
                 categoriesData.addObject(newCa);
-
+                TempData["Msg"] = "Tạo thành công thể loại " + newCa.name;
                 return RedirectToAction("Index");
             }
             catch
@@ -66,7 +66,7 @@ namespace Blog.Areas.web_admin.Controllers
                 newCa.description = collection["description"];
 
                 categoriesData.update(newCa);
-
+                TempData["Msg"] = "Cập nhật thành công thể loại " + newCa.name;
                 return RedirectToAction("Index");
             }
             catch
@@ -89,7 +89,7 @@ namespace Blog.Areas.web_admin.Controllers
             try
             {
                 categoriesData.remove(obj["ID"]);
-
+                TempData["Msg"] = "Xóa thành công thể loại " + obj["name"];
                 return RedirectToAction("Index");
             }
             catch
