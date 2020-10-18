@@ -1,4 +1,4 @@
-namespace Blog.Models
+﻿namespace Blog.Models
 {
     using System;
     using System.Collections.Generic;
@@ -13,15 +13,20 @@ namespace Blog.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Tên")]
         public string name { get; set; }
 
         [StringLength(255)]
+        [Display(Name = "Mô tả")]
+
         public string description { get; set; }
 
+        [Display(Name = "Ngày tạo")]
         public DateTime create_at { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Người tạo")]
         public string create_by { get; set; }
     }
 }

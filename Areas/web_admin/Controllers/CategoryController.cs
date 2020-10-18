@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Blog.Areas.web_admin.Data;
 
 namespace Blog.Areas.web_admin.Controllers
 {
@@ -12,17 +13,10 @@ namespace Blog.Areas.web_admin.Controllers
         // GET: web_admin/Category
         public ActionResult Index()
         {
-            DataBaseBlog db = new DataBaseBlog();
-
-            List<Category> Categories = db.Categories.ToList();
+            List<Category> Categories = categoriesData.pagination( 50 );
             return View(Categories);
         }
 
-        // GET: web_admin/Category/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: web_admin/Category/Create
         public ActionResult Create()
@@ -36,7 +30,14 @@ namespace Blog.Areas.web_admin.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                Category newCa = new Category();
+                newCa.ID = Guid.NewGuid().ToString();
+                newCa.name = collection["name"];
+                newCa.description = collection["description"];
+                newCa.create_at = DateTime.Now;
+                newCa.create_by = "1";
+
+                categoriesData.addObject(newCa);
 
                 return RedirectToAction("Index");
             }
@@ -47,9 +48,10 @@ namespace Blog.Areas.web_admin.Controllers
         }
 
         // GET: web_admin/Category/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            Category cat = categoriesData.find(id);
+            return View(cat);
         }
 
         // POST: web_admin/Category/Edit/5

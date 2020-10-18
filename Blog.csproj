@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\web_admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\web_admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\web_admin\Data\categoriesData.cs" />
     <Compile Include="Areas\web_admin\web_adminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -165,6 +166,8 @@
     <Content Include="Areas\web_admin\Views\HomeAdmin\Index.cshtml" />
     <Content Include="Areas\web_admin\assets\font\a1ecc3b826d01251edddf29c3e4e1e97.woff" />
     <Content Include="Areas\web_admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\web_admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\web_admin\Views\Category\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -193,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\web_admin\Data\" />
     <Folder Include="Areas\web_admin\Views\Home\" />
   </ItemGroup>
   <ItemGroup>

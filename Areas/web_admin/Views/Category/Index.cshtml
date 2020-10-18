@@ -11,15 +11,12 @@
 
     <div class="row">
             <h4 class="c-grey-900 mT-10 mB-30">@ViewBag.Title</h4>
-            @Html.ActionLink("Tạo mới", "Create", "Category", new {}, new { @class = "btn btn-success mT-10 mB-30 mL-30" })
+            @Html.ActionLink("Tạo mới", "Create", "Category" , new {}, new { @class = "btn btn-success mT-10 mB-30 mL-30" })
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="bgc-white bd bdrs-3 p-20 mB-20">
-                <div class="row">
-                    <h4 class="c-grey-900 mB-20">Danh sách thể loại</h4>
-
-                </div>
+                <h4 class="c-grey-900 mB-20">Danh sách thể loại</h4>
                 <table class="table">
                     <thead>
                         <tr>
@@ -49,7 +46,6 @@
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = category.ID }) |
-                                    @Html.ActionLink("Details", "Details", new { id = category.ID }) |
                                     @Html.ActionLink("Delete", "Delete", new { id = category.ID })
                                 </td>
                             </tr>
