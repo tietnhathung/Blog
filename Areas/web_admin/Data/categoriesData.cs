@@ -27,5 +27,32 @@ namespace Blog.Areas.web_admin.Data
             return db.Categories.Find(id);
         }
 
+        public static void update( Category newObj )
+        {
+            DataBaseBlog db = new DataBaseBlog();
+            try
+            {
+                Category oldObj = db.Categories.Find(newObj.ID);
+                oldObj.name = newObj.name;
+                oldObj.description = newObj.description;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+        public static void remove(string id)
+        {
+            DataBaseBlog db = new DataBaseBlog();
+            Category objRemove = db.Categories.Find(id);
+            try{
+                db.Categories.Remove(objRemove);
+                db.SaveChanges();
+            }
+            catch (Exception ex){
+            }
+        }
+
     }
 }

@@ -56,11 +56,16 @@ namespace Blog.Areas.web_admin.Controllers
 
         // POST: web_admin/Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                Category newCa = new Category();
+                newCa.ID = collection["ID"];
+                newCa.name = collection["name"];
+                newCa.description = collection["description"];
+
+                categoriesData.update(newCa);
 
                 return RedirectToAction("Index");
             }
@@ -71,18 +76,19 @@ namespace Blog.Areas.web_admin.Controllers
         }
 
         // GET: web_admin/Category/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            Category cat = categoriesData.find(id);
+            return View(cat);
         }
 
         // POST: web_admin/Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(FormCollection obj)
         {
             try
             {
-                // TODO: Add delete logic here
+                categoriesData.remove(obj["ID"]);
 
                 return RedirectToAction("Index");
             }
