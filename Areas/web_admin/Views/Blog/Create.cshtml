@@ -1,7 +1,7 @@
 ﻿@model Blog.Models.Blog
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Thêm mới bài viết";
     Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <div class="masonry-item">
     <div class="bgc-white p-20 bd">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Create", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -23,11 +23,28 @@
                         @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label col-md-12" for="categories">Chọn thể loại</label>
+                            <div class="col-md-offset-2 col-md-12">
+                                <select id="categories" name="categories" multiple="multiple" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-offset-2 col-md-12">
+                                @Html.TextBoxFor(m => m.thumbnail, new { @class = "form-control", @type = "file" })
+                                @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.contents, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-12">
-                        <div id="editorjs">
+                        <div id="editor">
                         </div>
                         @Html.HiddenFor(model => model.contents)
                         @Html.ValidationMessageFor(model => model.contents, "", new { @class = "text-danger" })
@@ -36,7 +53,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-12">
-                        <input type="submit" value="Thêm mới" class="btn btn-success" />
+                        <input type="submit" id="submit" value="Thêm mới" class="btn btn-success" />
                         @Html.ActionLink("Quay lại", "Index", "Category", new { }, new { @class = "btn btn-default " })
                     </div>
                 </div>
@@ -46,100 +63,61 @@
 </div>
 
 @section styles {
+    @Styles.Render("~/Areas/web_admin/assets/css/select2.min.css")
+
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 500px;
+        }
+        input[type=file]{
+            padding:3px !important;
+        }
+    </style>
 }
 
 @section scripts {
-    @Scripts.Render("~/Areas/web_admin/assets/js/editorjs.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/checklist.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/code.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/delimiter.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/editorjs.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/embed.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/header.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/inline-code.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/link.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/list.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/marker.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/quote.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/simple-image.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/table.js")
-    @Scripts.Render("~/Areas/web_admin/assets/js/warning.js")
+
+    @Scripts.Render("~/Areas/web_admin/assets/js/ckeditor.js")
+    @Scripts.Render("~/Areas/web_admin/assets/js/select2.min.js")
 
     <script>
-        
-        var editor = new EditorJS({
-            
-            holderId: 'editorjs',
-            tools: {
-                
-                header: {
-                    class: Header,
-                    inlineToolbar: ['link'],
-                    config: {
-                        placeholder: 'Header'
+
+        $(function () {
+            $('#categories').select2({
+                placeholder: 'Chọn biến',
+                ajax: {
+                    url: "/web_admin/Category/SelectCategories",
+                    dataType: 'json',
+                    method: "GET",
+                    delay: 500,
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (value) {
+                                return {
+                                    text: value.name,
+                                    id: value.ID
+                                }
+                            })
+                        };
                     },
-                    shortcut: 'CMD+SHIFT+H'
-                },
-                image: {
-                    class: SimpleImage,
-                    inlineToolbar: ['link'],
-                },
-                list: {
-                    class: List,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+SHIFT+L'
-                },
-                checklist: {
-                    class: Checklist,
-                    inlineToolbar: true,
-                },
-                quote: {
-                    class: Quote,
-                    inlineToolbar: true,
-                    config: {
-                        quotePlaceholder: 'Enter a quote',
-                        captionPlaceholder: 'Quote\'s author',
-                    },
-                    shortcut: 'CMD+SHIFT+O'
-                },
-                warning: Warning,
-                marker: {
-                    class: Marker,
-                    shortcut: 'CMD+SHIFT+M'
-                },
-                code: {
-                    class: CodeTool,
-                    shortcut: 'CMD+SHIFT+C'
-                },
-                delimiter: Delimiter,
-                inlineCode: {
-                    class: InlineCode,
-                    shortcut: 'CMD+SHIFT+C'
-                },
-                linkTool: LinkTool,
-                embed: Embed,
-                table: {
-                    class: Table,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+ALT+T'
-                },
-            },
-            data: {
-                blocks: [
-                    {
-                        type: "header",
-                        data: {
-                            text: "Nhập nội dung ở đây. . . ",
-                            level: 2
-                        }
-                    },
-                ]
-            },
-            
-            onChange: function () {
-                console.log('something changed');
-            }
+                    cache: true
+                }
+            });
         });
 
+        let editor;
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+
+            })
+            .then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        $("#submit").on('click', function () {
+            $("#contents").val(editor.getData());
+        });
     </script>
 }

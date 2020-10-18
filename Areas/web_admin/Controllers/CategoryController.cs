@@ -16,8 +16,13 @@ namespace Blog.Areas.web_admin.Controllers
             List<Category> Categories = categoriesData.pagination( 50 );
             return View(Categories);
         }
+        [HttpGet]
+        public ActionResult SelectCategories()
+        {
+            List<Category> Categories = categoriesData.all();
 
-
+            return Json(Categories, JsonRequestBehavior.AllowGet);
+        }
         // GET: web_admin/Category/Create
         public ActionResult Create()
         {

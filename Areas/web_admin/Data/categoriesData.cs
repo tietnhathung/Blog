@@ -8,7 +8,12 @@ namespace Blog.Areas.web_admin.Data
 {
     public class categoriesData
     {
-
+        public static List<Category> all()
+        {
+            DataBaseBlog db = new DataBaseBlog();
+            return db.Categories.OrderByDescending(c => c.create_at).ToList();
+        }
+       
         public static List<Category> pagination(int pana)
         {
             DataBaseBlog db = new DataBaseBlog();
@@ -17,7 +22,6 @@ namespace Blog.Areas.web_admin.Data
         public static void addObject<T>(T obj)
         {
             DataBaseBlog db = new DataBaseBlog();
-            
             db.Set(obj.GetType()).Add(obj);
             db.SaveChanges();
         }

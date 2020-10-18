@@ -36,7 +36,7 @@
                                 @Html.DisplayFor(modelItem => blog.title)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => blog.contents)
+                                @Html.Raw( blog.contents )
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => blog.create_at)

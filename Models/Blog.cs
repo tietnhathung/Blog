@@ -30,6 +30,8 @@
         public string create_by { get; set; }
 
         [StringLength(255)]
+        [Display(Name = "Ảnh dại diện")]
+
         public string thumbnail { get; set; }
         public int status { get; set; }
     }

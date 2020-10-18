@@ -1,4 +1,5 @@
 ﻿using Blog.Areas.web_admin.Data;
+using Blog.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,22 +26,24 @@ namespace Blog.Areas.web_admin.Controllers
         // GET: web_admin/Blog/Create
         public ActionResult Create()
         {
-
+            List<Category> Categories = categoriesData.all();
+            
             return View();
         }
 
         // POST: web_admin/Blog/Create
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                 blogsData.addObject(collection);
+                TempData["Msg"] = "Tạo thành công bài viết " + collection["title"];
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["Msg"] = "Tạo không thành công!";
                 return View();
             }
         }
