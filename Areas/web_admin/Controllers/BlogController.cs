@@ -25,6 +25,7 @@ namespace Blog.Areas.web_admin.Controllers
         // GET: web_admin/Blog/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
