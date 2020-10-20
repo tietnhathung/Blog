@@ -18,7 +18,6 @@
 
         [StringLength(255)]
         [Display(Name = "Mô tả")]
-
         public string description { get; set; }
 
         [Display(Name = "Ngày tạo")]

@@ -8,7 +8,7 @@ using Blog.Areas.web_admin.Data;
 
 namespace Blog.Areas.web_admin.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : BaseController
     {
         // GET: web_admin/Category
         public ActionResult Index()

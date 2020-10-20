@@ -129,11 +129,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\web_admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\web_admin\Controllers\BlogController.cs" />
     <Compile Include="Areas\web_admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\web_admin\Controllers\HomeAdminController.cs" />
+    <Compile Include="Areas\web_admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\web_admin\Data\categoriesData.cs" />
     <Compile Include="Areas\web_admin\Data\blogsData.cs" />
+    <Compile Include="Areas\web_admin\Data\Constants.cs" />
+    <Compile Include="Areas\web_admin\Data\UserData.cs" />
+    <Compile Include="Areas\web_admin\Data\UserSection.cs" />
     <Compile Include="Areas\web_admin\web_adminAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,11 +153,13 @@
   <ItemGroup>
     <Content Include="Areas\web_admin\assets\css\select2.min.css" />
     <Content Include="Areas\web_admin\assets\css\style.css" />
+    <Content Include="Areas\web_admin\assets\image\bg.jpg" />
     <Content Include="Areas\web_admin\assets\image\logo.png" />
     <Content Include="Areas\web_admin\assets\image\logo70x70.png" />
     <Content Include="Areas\web_admin\assets\image\logo_mini.png" />
     <Content Include="Areas\web_admin\assets\js\bundle.js" />
     <Content Include="Areas\web_admin\assets\js\ckeditor.js" />
+    <Content Include="Areas\web_admin\assets\js\custom.js" />
     <Content Include="Areas\web_admin\assets\js\select2.min.js" />
     <Content Include="Areas\web_admin\assets\js\vendor.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -177,6 +184,7 @@
     <Content Include="Areas\web_admin\Views\Blog\Index.cshtml" />
     <Content Include="Areas\web_admin\Views\Blog\Create.cshtml" />
     <Content Include="Areas\web_admin\assets\js\ckeditor.js.map" />
+    <Content Include="Areas\web_admin\Views\Login\Login.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -205,7 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\web_admin\Views\Home\" />
+    <Folder Include="Areas\web_admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

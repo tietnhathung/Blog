@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Blog.Areas.web_admin.Controllers
 {
-    public class BlogController : Controller
+    public class BlogController : BaseController
     {
         // GET: web_admin/Blog
         public ActionResult Index()
