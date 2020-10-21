@@ -43,8 +43,11 @@
                                     @Html.DisplayFor(modelItem => item.create_at)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Sửa", "Edit", new { id = item.ID }) |
-                                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                                    @if(ViewBag.adminSesstion.UserID != item.ID)
+                                    {
+                                        @Html.ActionLink("Sửa |", "Edit", new { id = item.ID }); 
+                                        @Html.ActionLink(" Xóa", "Delete", new { id = item.ID });
+                                    }
                                 </td>
                             </tr>
                         }

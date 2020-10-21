@@ -10,7 +10,6 @@
     {
         [StringLength(50)]
         [Display(Name = "Họ và tên")]
-
         public string full_name { get; set; }
 
         [Required]
@@ -23,10 +22,10 @@
         [Display(Name = "Mật khẩu")]
         public string password { get; set; }
 
-        [NotMapped]
-        [Display(Name = "Xác nhận mật khẩu")]
-        [Compare("password", ErrorMessage = "Confirm password doesn't match, Type again !")]
-        public string ConfirmPassword { get; set; }
+        //[NotMapped]
+        //[Display(Name = "Xác nhận mật khẩu")]
+        //[Compare("password", ErrorMessage = "Mật khẩu không khớp!")]
+        //public string ConfirmPassword { get; set; }
 
         [Display(Name = "Thời gian tạo")]
         public DateTime create_at { get; set; }

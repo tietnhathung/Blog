@@ -16,16 +16,16 @@ namespace Blog.Areas.web_admin.Controllers
             var section = (UserSection)Session[Constants.USER_SECTION];
             if (section == null)
             {
-                //filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "login", action = "login", Area = "web_admin" }));
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "login", action = "login", Area = "web_admin" }));
             }
-           
+
             try
             {
-                ViewBag.fullname = section.FullName;
+                ViewBag.adminSesstion = section;
             }
             catch
             {
-                ViewBag.fullname = "Admin";
+                ViewBag.adminSesstion = null;
             }
             base.OnActionExecuted(filterContext);
         }

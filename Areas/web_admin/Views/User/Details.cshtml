@@ -1,0 +1,41 @@
+﻿@model Blog.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>Thông tin tài khoản</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.full_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.full_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.create_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.create_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

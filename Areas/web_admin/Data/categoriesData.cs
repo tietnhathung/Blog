@@ -40,6 +40,8 @@ namespace Blog.Areas.web_admin.Data
                 oldObj.name = newObj.name;
                 oldObj.description = newObj.description;
                 db.SaveChanges();
+
+              
             }
             catch {
                 
