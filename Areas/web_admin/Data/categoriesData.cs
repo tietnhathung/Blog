@@ -41,8 +41,7 @@ namespace Blog.Areas.web_admin.Data
                 oldObj.description = newObj.description;
                 db.SaveChanges();
             }
-            catch (Exception ex)
-            {
+            catch {
                 
             }
         }
@@ -54,7 +53,7 @@ namespace Blog.Areas.web_admin.Data
                 db.Categories.Remove(objRemove);
                 db.SaveChanges();
             }
-            catch (Exception ex){
+            catch{
             }
         }
 

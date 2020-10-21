@@ -9,6 +9,24 @@ namespace Blog.Areas.web_admin.Data
     public class UserData
     {
         DataBaseBlog db = new DataBaseBlog();
+
+        public User find(string id)
+        {
+            
+            return db.Users.Find(id);
+        }
+        public List<User> all()
+        {
+            try
+            {
+                return db.Users.ToList();
+            }
+            catch(Exception ex)
+            {
+                return new List<User>();
+            }
+            
+        }
         public String Insert(Models.User u)
         {
             db.Users.Add(u); 
