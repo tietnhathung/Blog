@@ -27,5 +27,8 @@
         [StringLength(50)]
         [Display(Name = "Người tạo")]
         public string create_by { get; set; }
+        
+        public string Blog { get; set; }
+        public IList<BLogCategory> BLogCategory {get;set;}
     }
 }

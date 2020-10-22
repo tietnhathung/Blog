@@ -15,6 +15,15 @@ namespace Blog.Models
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<BLogCategory> BLogCategorys { get; set; }
+
+        public class BLogCategory{
+            public int BlogId {get;set;}
+            public Blog Blog {get;set;}
+
+            public int CategoryId {get;set;}
+            public Category Category {get;set;}
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +34,17 @@ namespace Blog.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<BLogCategory>().HasKey(sc => new {sc.BlogId,sc.CategoryId});
+            modelBuilder.Entity<BLogCategory>()
+                .HasOne<Blog>(sc => sc.Blog)
+                .WithMany(s => s.BLogCategory)
+                .HasForeignKey(sc => sc.BlogId);
+
+            modelBuilder.Entity<BLogCategory>()
+                .HasOne<Category>(sc => sc.Category)
+                .WithMany(s => s.BLogCategory)
+                .HasForeignKey(sc => sc.CategoryId);
         }
     }
 }

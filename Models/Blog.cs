@@ -34,5 +34,8 @@
 
         public string thumbnail { get; set; }
         public int status { get; set; }
+
+        public string Category { get; set; } 
+        public IList<BLogCategory> BLogCategory {get;set;}
     }
 }

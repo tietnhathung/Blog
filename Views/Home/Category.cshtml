@@ -1,0 +1,36 @@
+﻿@model List<Blog.Models.Category>
+
+@{
+    ViewBag.Title = "Category";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4 class="c-grey-900 mT-10 mB-30">@ViewBag.Title</h4></div>
+                <div class="panel-body">
+                    <table data-toggle="table" data-url="tables/data1.json" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                        <thead>
+                            <tr>
+                                <th data-field="title" data-checkbox="true">Tên</th>
+                                <th data-field="des" data-sortable="true">Mô tả</th>
+                                <th data-field="cretedTime" data-sortable="true">Ngày tạo</th>
+                                <th data-field="cretedAccount" data-sortable="true">Người tạo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cat in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(@cat.name, "Detail", "Home", new { id = @cat.ID }, new { @class = "btn bg-blue-ui white read" })
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
