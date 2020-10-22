@@ -1,7 +1,8 @@
-namespace Blog.Models
+﻿namespace Blog.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -19,15 +20,19 @@ namespace Blog.Models
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Tên")]
         public string name { get; set; }
 
         [StringLength(255)]
+        [DisplayName("Mô tả")]
         public string description { get; set; }
 
+        [DisplayName("Ngày tạo")]
         public DateTime create_at { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Người tạo")]
         public string create_by { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
