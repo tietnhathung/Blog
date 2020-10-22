@@ -6,20 +6,19 @@ namespace Blog.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class User
+    public partial class Blog_category
     {
         [StringLength(50)]
-        public string full_name { get; set; }
+        public string category_id { get; set; }
 
-        [StringLength(10)]
-        public string username { get; set; }
-
-        [StringLength(10)]
-        public string password { get; set; }
-
-        public DateTime? create_at { get; set; }
+        [StringLength(50)]
+        public string blog_id { get; set; }
 
         [StringLength(50)]
         public string ID { get; set; }
+
+        public virtual Blog Blog { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

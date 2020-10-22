@@ -1,4 +1,4 @@
-﻿namespace Blog.Models
+namespace Blog.Models
 {
     using System;
     using System.Collections.Generic;
@@ -8,31 +8,35 @@
 
     public partial class Blog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Blog()
+        {
+            Blog_category = new HashSet<Blog_category>();
+        }
+
         [StringLength(50)]
         public string ID { get; set; }
 
         [Required]
-        [Display(Name = "Tiêu đề")]
         [StringLength(50)]
         public string title { get; set; }
 
         [Required]
-        [Display(Name = "Nội dung")]
         [StringLength(500)]
         public string contents { get; set; }
 
-        [Display(Name = "Ngày tạo")]
         public DateTime create_at { get; set; }
 
         [Required]
-        [Display(Name = "Tạo bởi")]
         [StringLength(50)]
         public string create_by { get; set; }
 
-        [StringLength(255)]
-        [Display(Name = "Ảnh dại diện")]
-
-        public string thumbnail { get; set; }
         public int status { get; set; }
+
+        [StringLength(255)]
+        public string thumbnail { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Blog_category> Blog_category { get; set; }
     }
 }
