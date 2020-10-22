@@ -36,6 +36,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Đổi mật khẩu", "ChangePass", new { id = Model.ID }) |
+    @Html.ActionLink("Quay lại","Index", "HomeAdmin")
 </p>

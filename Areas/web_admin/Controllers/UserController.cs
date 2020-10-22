@@ -61,6 +61,26 @@ namespace Blog.Areas.web_admin.Controllers
             }
         }
 
+       
+        [HttpGet]
+        public ActionResult ChangePass(string id)
+        {
+            UserData dtus = new UserData();
+            Models.User user = dtus.find(id);
+            return View(user);
+        }
+       
+        [HttpPost]
+        public ActionResult ChangePass(Models.User user)
+        {
+
+            UserData dataU = new UserData();
+            User newUser = dataU.ChangePass(user);
+
+            TempData["Msg"] = "Cập nhật người dung" + user.full_name + " thành công!";
+
+            return RedirectToAction("Details");
+        }
         // GET: web_admin/User/Edit/5
         public ActionResult Edit(string id)
         {
@@ -68,7 +88,6 @@ namespace Blog.Areas.web_admin.Controllers
             Models.User listUser = dtus.find(id);
             return View(listUser);
         }
-
         // POST: web_admin/User/Edit/5
         [HttpPost]
         public ActionResult Edit( Models.User user)
@@ -83,7 +102,6 @@ namespace Blog.Areas.web_admin.Controllers
                 UserSection us = new UserSection(newUser);
                 Session.Add(Constants.USER_SECTION, us);
             }
-           
 
             TempData["Msg"] = "Cập nhật người dung" + user.full_name + " thành công!";
 
