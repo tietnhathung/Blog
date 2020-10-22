@@ -1,4 +1,4 @@
-﻿@model Blog.Models.Category
+﻿@model Blog.Models.Blog
 
 @{
     ViewBag.Title = "Delete";
@@ -6,22 +6,23 @@
 }
 
 <div>
-    <h4>Bạn có chắc muốn xóa thể loại này?</h4>
+    <h4>Bạn có chắc muốn xóa blog không?</h4>
+    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.title)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(model => model.title)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.description)
+            @Html.DisplayNameFor(model => model.contents)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.description)
+            @Html.DisplayFor(model => model.contents)
         </dd>
 
         <dt>
@@ -40,14 +41,31 @@
             @Html.DisplayFor(model => model.create_by)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.thumbnail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thumbnail)
+        </dd>
+
     </dl>
 
-    @using (Html.BeginForm("Delete", "Category")) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.ID)
         <div class="form-actions no-color">
             <input type="submit" value="Xóa" class="btn btn-danger" />
-            @Html.ActionLink("Quay lại", "Index", "Category", new { }, new { @class = "btn btn-default " })
+            @Html.ActionLink("Quay lại", "Index", "Blog", new { }, new { @class = "btn btn-default " })
         </div>
     }
 </div>

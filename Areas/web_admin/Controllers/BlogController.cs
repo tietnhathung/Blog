@@ -27,7 +27,7 @@ namespace Blog.Areas.web_admin.Controllers
         public ActionResult Create()
         {
             List<Category> Categories = categoriesData.all();
-            
+            ViewBag.listCategories = Categories;
             return View();
         }
 
@@ -37,7 +37,7 @@ namespace Blog.Areas.web_admin.Controllers
         {
             try
             {
-                 blogsData.addObject(collection);
+                blogsData.addObject(collection);
                 TempData["Msg"] = "Tạo thành công bài viết " + collection["title"];
                 return RedirectToAction("Index");
             }
@@ -49,19 +49,19 @@ namespace Blog.Areas.web_admin.Controllers
         }
 
         // GET: web_admin/Blog/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            Models.Blog bl = blogsData.find(id);
+            return View(bl);
         }
 
         // POST: web_admin/Blog/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Edit(string id , FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
+                blogsData.Update(id, collection);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,25 +71,22 @@ namespace Blog.Areas.web_admin.Controllers
         }
 
         // GET: web_admin/Blog/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+
+            Models.Blog bl = blogsData.find(id);
+            return View(bl);
         }
 
         // POST: web_admin/Blog/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            
+            blogsData.remove(collection["ID"]);
+            TempData["Msg"] = "Xóa thành công";
+            return RedirectToAction("Index");
+            
         }
     }
 }

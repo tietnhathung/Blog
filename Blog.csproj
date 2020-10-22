@@ -133,6 +133,7 @@
     <Compile Include="Areas\web_admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\web_admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\web_admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\web_admin\Data\blog_category_Data.cs" />
     <Compile Include="Areas\web_admin\Data\categoriesData.cs" />
     <Compile Include="Areas\web_admin\Data\blogsData.cs" />
     <Compile Include="Areas\web_admin\Data\Constants.cs" />
@@ -191,6 +192,8 @@
     <Content Include="Areas\web_admin\Views\User\Delete.cshtml" />
     <Content Include="Areas\web_admin\Views\User\Details.cshtml" />
     <Content Include="Areas\web_admin\Views\User\ChangePass.cshtml" />
+    <Content Include="Areas\web_admin\Views\Blog\Delete.cshtml" />
+    <Content Include="Areas\web_admin\Views\Blog\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

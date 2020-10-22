@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Blog.Areas.web_admin.Data;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace Blog.Areas.web_admin.Controllers
 {
@@ -19,9 +21,10 @@ namespace Blog.Areas.web_admin.Controllers
         [HttpGet]
         public ActionResult SelectCategories()
         {
-            List<Category> Categories = categoriesData.all();
-
-            return Json(Categories, JsonRequestBehavior.AllowGet);
+            DataBaseBlog db = new DataBaseBlog();
+            db.Configuration.ProxyCreationEnabled = false;
+            List<Category> Categories = db.Categories.OrderByDescending(c => c.name).ToList();
+            return this.Json(Categories, JsonRequestBehavior.AllowGet);
         }
         // GET: web_admin/Category/Create
         public ActionResult Create()
@@ -95,7 +98,7 @@ namespace Blog.Areas.web_admin.Controllers
             {
                 categoriesData.remove(obj["ID"]);
                 TempData["Msg"] = "Xóa thành công thể loại " + obj["name"];
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" , "Category");
             }
             catch
             {

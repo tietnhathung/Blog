@@ -24,7 +24,6 @@
         public string title { get; set; }
 
         [Required]
-        [StringLength(500)]
         [DisplayName("Nội dung")]
         public string contents { get; set; }
 

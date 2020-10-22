@@ -52,6 +52,7 @@ namespace Blog.Areas.web_admin.Data
             DataBaseBlog db = new DataBaseBlog();
             Category objRemove = db.Categories.Find(id);
             try{
+                blog_category_Data.removeFromCategory(id);
                 db.Categories.Remove(objRemove);
                 db.SaveChanges();
             }

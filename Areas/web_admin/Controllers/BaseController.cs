@@ -12,7 +12,6 @@ namespace Blog.Areas.web_admin.Controllers
     {
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-
             var section = (UserSection)Session[Constants.USER_SECTION];
             if (section == null)
             {
