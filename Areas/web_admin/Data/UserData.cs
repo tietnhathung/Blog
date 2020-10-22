@@ -34,7 +34,22 @@ namespace Blog.Areas.web_admin.Data
             db.SaveChanges();
             return u.ID;
         }
+        
 
+         public User ChangePass(User user)
+        {
+            User userOld = db.Users.Find(user.ID);
+            try
+            {
+                userOld.password = user.password;
+                db.SaveChanges();
+                return userOld;
+            }
+            catch
+            {
+                return userOld;
+            }
+        }
         public User Update( User user)
         {
             User userOld = db.Users.Find(user.ID);
