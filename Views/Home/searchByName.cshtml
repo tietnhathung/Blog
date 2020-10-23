@@ -1,0 +1,31 @@
+﻿@model List<Blog.Models.Blog>
+@{
+    ViewBag.Title = "Tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (var blog in Model)
+{
+    <article class="entry">
+        <header class="entry__header">
+            <h2 class="entry__title h1">
+                <a href="/Home/Detail/@blog.ID" title="@blog.title">@blog.title</a>
+            </h2>
+            <div class="entry__meta">
+                <ul>
+                    List<Models.Blog> listBlog
+                    <li><a href="#" title="" rel="category tag">Tác giả: @blog.User.full_name</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="entry__content" style="max-height: 200px; overflow: hidden; text-overflow: inherit;">
+            <p>
+                @Html.Raw(blog.contents)
+            </p>
+        </div>
+        <div>@blog.create_at</div>
+        <hr />
+    </article>
+}
+

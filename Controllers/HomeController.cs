@@ -43,6 +43,15 @@ namespace Blog.Controllers
 
             return View(cate.Blog_category.ToList());
         }
+
+        public ActionResult searchByName(string searchString)
+        {
+            
+            DataBaseBlog db = new DataBaseBlog();
+            List<Models.Blog> listBlog = db.Blogs.Where(b => b.title.Contains(searchString)).ToList();
+
+            return View(listBlog);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

@@ -889,6 +889,7 @@
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\searchByCategory.cshtml" />
+    <Content Include="Views\Home\searchByName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
