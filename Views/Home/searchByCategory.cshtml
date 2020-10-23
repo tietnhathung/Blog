@@ -15,11 +15,11 @@
                 <div class="entry__meta">
                     <ul>
                         <li>@item.Blog.create_at</li>
-                        <li><a href="#" title="" rel="category tag">@item.Blog.create_by</a></li>
+                        <li><a href="#" title="" rel="category tag">@item.Blog.User.full_name</a></li>
                     </ul>
                 </div>
             </header>
-            <div class="entry__content">
+            <div class="entry__content" style="max-height: 200px; overflow: hidden; text-overflow: inherit;">
                 <p>
                     @Html.Raw(item.Blog.contents)
                 </p>
