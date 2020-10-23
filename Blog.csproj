@@ -819,6 +819,7 @@
     <Content Include="Assests\images\1.jpg" />
     <Content Include="Assests\images\2.jpg" />
     <Content Include="Assests\images\3.jpg" />
+    <Content Include="Assests\images\icon-search.svg" />
     <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
