@@ -20,7 +20,7 @@
 
         [Required]
         [StringLength(50)]
-        [DisplayName("Tiêu đề 2")]
+        [DisplayName("Tiêu đề")]
         public string title { get; set; }
 
         [Required]
