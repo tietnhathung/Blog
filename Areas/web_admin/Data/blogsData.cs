@@ -34,9 +34,13 @@ namespace Blog.Areas.web_admin.Data
 
             db.Set(obj.GetType()).Add(obj);
             db.SaveChanges();
-            List<string> result = collection["categories"].Split(',').ToList();
 
-            blog_category_Data.inserts(obj.ID, result);
+            if (collection["categories"] != null)
+            {
+                List<string> result = collection["categories"].Split(',').ToList();
+                blog_category_Data.inserts(obj.ID, result);
+            }
+
         }
 
         public static void Update(string id, FormCollection collection)
@@ -49,9 +53,16 @@ namespace Blog.Areas.web_admin.Data
 
             db.SaveChanges();
 
-            List<string> result = collection["categories"].Split(',').ToList();
-
-            blog_category_Data.Update(id, result);
+            if (collection["categories"] != null)
+            {
+                List<string> result = collection["categories"].Split(',').ToList();
+                blog_category_Data.Update(id, result);
+            }
+            else
+            {
+                blog_category_Data.removeFromBlogId(id);
+            }
+            
         }
 
         public static void remove(string id)

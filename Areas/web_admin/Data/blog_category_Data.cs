@@ -47,5 +47,13 @@ namespace Blog.Areas.web_admin.Data
             db.SaveChanges();
 
         }
+        public static void removeFromBlogId(string BlogId)
+        {
+
+            DataBaseBlog db = new DataBaseBlog();
+            db.Blog_category.RemoveRange(db.Blog_category.Where(b => b.blog_id == BlogId));
+            db.SaveChanges();
+
+        }
     }
 }
