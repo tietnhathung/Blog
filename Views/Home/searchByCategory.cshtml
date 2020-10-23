@@ -7,26 +7,25 @@
 
     @foreach (var item in Model)
     {
-        <article class="entry">
-            <header class="entry__header">
-                <h2 class="entry__title h1">
-                    <a href="/Home/Detail/@item.blog_id" title="@item.Blog.title">@item.Blog.title</a>
-                </h2>
-                <div class="entry__meta">
-                    <ul>
-                        <li>@item.Blog.create_at</li>
-                        <li><a href="#" title="" rel="category tag">@item.Blog.User.full_name</a></li>
-                    </ul>
-                </div>
-            </header>
-            <div class="entry__content" style="max-height: 200px; overflow: hidden; text-overflow: inherit;">
-                <p>
-                    @Html.Raw(item.Blog.contents)
-                </p>
-            </div>
+    <article class="entry">
+        <header class="entry__header">
+            <h2 class="entry__title h1">
+                <a href="/Home/Detail/@item.blog_id" title="@item.Blog.title">@item.Blog.title</a>
+            </h2>
             <div class="entry__meta">
-                <i class="fa fa-comments-o"></i> Comments(3)
+                <ul>
+
+                    <li><a href="#" title="" rel="category tag">Tác giả: @item.Blog.User.full_name</a></li>
+                </ul>
             </div>
-        </article>
+        </header>
+        <div class="entry__content" style="max-height: 200px; overflow: hidden; text-overflow: inherit;">
+            <p>
+                @Html.Raw(item.Blog.contents)
+            </p>
+        </div>
+        <div>@item.Blog.create_at</div>
+        <hr />
+    </article>
 }
 

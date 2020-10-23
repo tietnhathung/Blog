@@ -13,8 +13,7 @@
             </h2>
             <div class="entry__meta">
                 <ul>
-                    <li>@blog.create_at</li>
-                    <li><a href="#" title="" rel="category tag">@blog.User.full_name</a></li>
+                    <li><a href="#" title="" rel="category tag">Tác giả: @blog.User.full_name</a></li>
                 </ul>
             </div>
         </header>
@@ -23,8 +22,7 @@
                 @Html.Raw(blog.contents)
             </p>
         </div>
-        <div class="entry__meta">
-            <i class="fa fa-comments-o"></i> Comments(3)
-        </div>
+        <div>@blog.create_at</div>
+        <hr />
     </article>
 }

@@ -43,10 +43,10 @@
             <div class="row">
                 <ul class="s-header__nav">
                     <li class="current">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
                     </li>
                     <li class="has-children">
-                        <a href="#0">Categories</a>
+                        <a href="#0">Danh mục</a>
                         <ul>
                             @foreach (var category in ViewBag.ListCate)
                             {
@@ -56,8 +56,7 @@
                             }
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Liên Hệ", "Contact", "Home")</li>
                 </ul>
             </div>
         </nav>
@@ -81,7 +80,7 @@
                 </div> -->
 
                 <div class="widget widget--categories">
-                    <h3 class="h6">Categories.</h3>
+                    <h3 class="h6">Danh mục</h3>
                     <ul>
                         @foreach (var category in ViewBag.ListCate)
                         {
@@ -91,19 +90,19 @@
                 </div>
 
                 <div class="widget widget_text group">
-                    <h3 class="h6">Widget.</h3>
+                    <h3 class="h6">Nội dung.</h3>
                     <p>
-                        Đây là một trang web blog được xây dựng bằng công cụ Visual Studio, sử dụng ASP.NET MVC và Entity Framework by Windown
+                        Đây là một trang web blog được xây dựng bằng công cụ Visual Studio, sử dụng ASP.NET MVC và Entity Framework by Windown. Code by Group 4.
                     </p>
                 </div>
 
                 <div class="widget widget_tags">
-                    <h3 class="h6">Post Tags.</h3>
+                    <h3 class="h6">Tags.</h3>
 
                     <div class="tagcloud group">
                         @foreach (var category in ViewBag.ListCate)
                         {
-                            <a href="@Url.Action("searchByCategory", "Home", new { id = @category.ID})">@category.name</a>
+                            <a href="@Url.Action("searchByCategory", "Home", new { id = @category.ID})">#@category.name</a>
                         }
                     </div>
                 </div>
@@ -165,7 +164,7 @@
             </div>
 
             <div class="ss-copyright">
-                <span>© Copyright Keep It Simple 2020</span>
+                <span>© Copyright 2020</span>
                 <span>Design by <a href="https://www.facebook.com/GiangNguyen6998">Group4</a></span>
             </div>
 
