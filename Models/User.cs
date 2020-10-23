@@ -26,5 +26,7 @@
 
         [StringLength(50)]
         public string ID { get; set; }
+
+        public virtual ICollection<Blog> Blogs { get; set; }
     }
 }

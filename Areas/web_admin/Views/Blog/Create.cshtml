@@ -36,25 +36,21 @@
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-8">
-                                @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "control-label col-md-12" })
-                                @{
-                                    var urlImg = "/Areas/web_admin/assets/image/unnamed.png";
-                                }
-                                <div class="col-md-offset-2 col-md-12">
-                                    <div id="chon-anh"
-                                         style="min-height: 200px;
-                                        cursor:pointer ;
-                                        background-image: url( @urlImg );
-                                        background-size:cover;
-                                        background-position: center;"
-                                         class="col-md-12">
-                                    </div>
-                                    @Html.HiddenFor(m => m.thumbnail, new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
-                                </div>
+                        @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "control-label col-md-12" })
+                        @{
+                            var urlImg = "/Areas/web_admin/assets/image/unnamed.png";
+                        }
+                        <div class="col-md-offset-2 col-md-12">
+                            <div id="chon-anh"
+                                    style="min-height: 200px;
+                                cursor:pointer ;
+                                background-image: url( @urlImg );
+                                background-size:cover;
+                                background-position: center;"
+                                    class="col-md-12">
                             </div>
+                            @Html.HiddenFor(m => m.thumbnail, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

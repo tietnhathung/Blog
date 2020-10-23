@@ -35,17 +35,25 @@ namespace Blog.Areas.web_admin.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Create(FormCollection collection)
         {
-            try
+            if (ModelState.IsValid)
             {
-                blogsData.addObject(collection);
-                TempData["Msg"] = "Tạo thành công bài viết " + collection["title"];
-                return RedirectToAction("Index");
+                try
+                {
+                    blogsData.addObject(collection);
+                    TempData["Msg"] = "Tạo thành công bài viết " + collection["title"];
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    TempData["Msg"] = "Tạo không thành công!";
+                    return View();
+                }
             }
-            catch
+            else
             {
-                TempData["Msg"] = "Tạo không thành công!";
                 return View();
             }
+
         }
 
         // GET: web_admin/Blog/Edit/5

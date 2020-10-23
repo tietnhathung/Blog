@@ -42,5 +42,7 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Blog_category> Blog_category { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

@@ -34,6 +34,12 @@ namespace Blog.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+              .HasMany(e => e.Blogs)
+              .WithRequired(e => e.User)
+              .HasForeignKey(e => e.create_by)
+              .WillCascadeOnDelete(false);
         }
     }
 }
