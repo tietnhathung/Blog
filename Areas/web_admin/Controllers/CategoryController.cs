@@ -43,7 +43,6 @@ namespace Blog.Areas.web_admin.Controllers
                 newCa.name = collection["name"];
                 newCa.description = collection["description"];
                 newCa.create_at = DateTime.Now;
-                newCa.create_by = "1";
 
                 categoriesData.addObject(newCa);
                 TempData["Msg"] = "Tạo thành công thể loại " + newCa.name;
