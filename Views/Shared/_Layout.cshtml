@@ -75,7 +75,7 @@
                     @using (Html.BeginForm("searchByName", "Home", FormMethod.Get))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.TextBox("SearchString",new {}, new {@class= "text-search" })
+                        @Html.TextBox("SearchString", null , new {@class= "text-search" })
                         <input type="submit" value="" class="submit-search">
                      }
                 </div> 

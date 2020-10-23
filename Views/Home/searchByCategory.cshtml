@@ -14,8 +14,17 @@
             </h2>
             <div class="entry__meta">
                 <ul>
-
-                    <li><a href="#" title="" rel="category tag">Tác giả: @item.Blog.User.full_name</a></li>
+                    <li>
+                        @item.Blog.create_at
+                    </li>
+                    @foreach (var bbb in item.Blog.Blog_category)
+                    {
+                        <li>
+                            <a href="#">
+                                #@bbb.Category.name
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
         </header>
@@ -24,7 +33,9 @@
                 @Html.Raw(item.Blog.contents)
             </p>
         </div>
-        <div>@item.Blog.create_at</div>
+        <div>
+            <a href="#" title="" rel="category tag">@item.Blog.User.full_name</a>
+        </div>
         <hr />
     </article>
 }
