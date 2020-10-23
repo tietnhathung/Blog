@@ -4,51 +4,27 @@
     ViewBag.Title = "Danh sách blog";
 }
 
-<div class="row">
-    <div class="container cta-100 ">
-        <div class="container">
-            <div class="row blog">
-                <div class="col-md-12">
-                    <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-                            <div class="carousel-item ">
-                                <div class="row">
-                                    @foreach (var blog in Model)
-                                    {
-                                        <div class="col-md-4">
-                                            <div class="item-box-blog">
-                                                <div class="item-box-blog-image">
-                                                    <div class="item-box-blog-date bg-blue-ui white"> <span class="mon">@blog.create_at</span> </div>
-                                                    <figure> <img alt="" src="~/Assests/images/3.jpg"> </figure>
-                                                </div>
-                                                <div class="item-box-blog-body">
-                                                    <!--Heading-->
-                                                    <div class="item-box-blog-heading">
-                                                        <a href="/Home/Detail/@blog.ID" tabindex="0">
-                                                            <h4>@blog.title</h4>
-                                                        </a>
-                                                    </div>
-                                                    <!--Data-->
-                                                    <div class="item-box-blog-data" style="padding: 15px 15px;">
-                                                        <p><i class="fa fa-user-o"></i>@blog.create_by,<i class="fa fa-comments-o"></i> Comments(3)</p>
-                                                    </div>
-                                                    <!--Text-->
-                                                    <div class="item-box-blog-text">
-                                                        <p>@blog.contents</p>
-                                                    </div>
-                                                    <div class="mt">@Html.ActionLink("Xem chi tiết", "Detail", "Home", new { id = blog.ID }, new { @class = "btn bg-blue-ui white read" })</div>
-                                                    <!--Read More Button-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+@foreach (var blog in Model)
+{
+    <article class="entry">
+        <header class="entry__header">
+            <h2 class="entry__title h1">
+                <a href="/Home/Detail/@blog.ID" title="@blog.title">@blog.title</a>
+            </h2>
+            <div class="entry__meta">
+                <ul>
+                    <li>@blog.create_at</li>
+                    <li><a href="#" title="" rel="category tag">@blog.create_by</a></li>
+                </ul>
             </div>
+        </header>
+        <div class="entry__content">
+            <p>
+                @Html.Raw(blog.contents)
+            </p>
         </div>
-    </div>
-</div>
+        <div class="entry__meta">
+            <i class="fa fa-comments-o"></i> Comments(3)
+        </div>
+    </article>
+}

@@ -815,6 +815,9 @@
     <Content Include="Areas\web_admin\assets\js\custom.js" />
     <Content Include="Areas\web_admin\assets\js\select2.min.js" />
     <Content Include="Areas\web_admin\assets\js\vendor.js" />
+    <Content Include="Assests\images\1.jpg" />
+    <Content Include="Assests\images\2.jpg" />
+    <Content Include="Assests\images\3.jpg" />
     <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

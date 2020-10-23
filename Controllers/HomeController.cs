@@ -36,11 +36,12 @@ namespace Blog.Controllers
         }
         public ActionResult searchByCategory(string id)
         {
+            
             DataBaseBlog db = new DataBaseBlog();
 
-            Category cate = db.Categories.Find(id);
+            Category cate = db.Categories.Where(x => x.ID == id).SingleOrDefault();
 
-            return View(cate);
+            return View(cate.Blog_category.ToList());
         }
         public ActionResult Contact()
         {
@@ -48,15 +49,10 @@ namespace Blog.Controllers
             return View();
         }
 
-        public ActionResult searchBlogs(string IbD)
+        public ActionResult About()
         {
-            List<Models.Blog> blogs = PrepareDB.selectListBlogs(20);
-
-            //if (!String.IsNullOrEmpty(ID))
-            //{
-            //}
-
-            return View(blogs);
+            ViewBag.Message = "Thông tin liên hệ: 0123456789";
+            return View();
         }
     }
 }

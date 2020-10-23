@@ -1,71 +1,187 @@
-﻿
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
+    <title>GROUP 4</title>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/Site.css")
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Content/styles.css" rel="stylesheet">
-    <link href="~/Content/all.css" rel="stylesheet">
-    <link href="~/Content/clean-blog.css" rel="stylesheet">
-    <link href="~/Content/fontawesome.css" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
-</head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("BLOG GROUP 4", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
 
-                    <li><a class="btn btn-secondary dropdown-toggle" href="Home/Index">Home</a></li>
-                    <li>
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Category
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <ul>
-                                @foreach (var category in ViewBag.ListCate)
-                                {
-                                <li>  <a href="Home/searchByCategory/@category.ID">@category.name</a></li>
-                                }
-                            </ul>
-                            </div>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/styles.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Content/base.css">
+    <link rel="stylesheet" href="~/Content/main.css">
+    <script defer src="~/Scripts/all.min.js"></script>
+
+</head>
+
+<body id="top">
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <header class="s-header">
+        <div class="row">
+            <div class="s-header__content column">
+                <h1 class="s-header__logotext">
+                    <a href="Home/Index" title="">BLOG GROUP 4</a>
+                </h1>
+                <p class="s-header__tagline">Selected good blogs.</p>
+            </div>
+        </div>
+
+        <nav class="s-header__nav-wrap">
+            <div class="row">
+                <ul class="s-header__nav">
+                    <li class="current">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     </li>
-                    <li><a class="btn btn-secondary dropdown-toggle" href="Home/Contact">Contact</a></li>
+                    <li class="has-children">
+                        <a href="#0">Categories</a>
+                        <ul>
+                            @foreach (var category in ViewBag.ListCate)
+                            {
+                                <li>
+                                    <a style="text-transform: uppercase;" href="@Url.Action("searchByCategory", "Home", new { id = @category.ID})">@category.name</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </div>
+        </nav>
+        <a class="header-menu-toggle" href="#0" title="Menu"><span>Menu</span></a>
+    </header>
+
+    <div class="s-content">
+
+        <div class="row">
+            <div id="main" class="s-content__main large-8 column">
+                @RenderBody()
+            </div>
+            <div id="sidebar" class="s-content__sidebar large-4 column">
+
+                <!-- <div class="hidden widget widget--search">
+                   <h3 class="h6">Search</h3>
+                   <form action="#">
+                      <input type="text" value="Search here..." onblur="if(this.value == '') { this.value = 'Search here...'; }" onfocus="if (this.value == 'Search here...') { this.value = ''; }" class="text-search">
+                      <input type="submit" value="" class="submit-search">
+                   </form>
+                </div> -->
+
+                <div class="widget widget--categories">
+                    <h3 class="h6">Categories.</h3>
+                    <ul>
+                        @foreach (var category in ViewBag.ListCate)
+                        {
+                        <li>  <a href="@Url.Action("searchByCategory", "Home", new { id = @category.ID})">@category.name</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="widget widget_text group">
+                    <h3 class="h6">Widget.</h3>
+                    <p>
+                        Đây là một trang web blog được xây dựng bằng công cụ Visual Studio, sử dụng ASP.NET MVC và Entity Framework by Windown
+                    </p>
+                </div>
+
+                <div class="widget widget_tags">
+                    <h3 class="h6">Post Tags.</h3>
+
+                    <div class="tagcloud group">
+                        @foreach (var category in ViewBag.ListCate)
+                        {
+                            <a href="@Url.Action("searchByCategory", "Home", new { id = @category.ID})">@category.name</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="s-footer">
+
+        <div class="row s-footer__top">
+            <div class="column">
+                <ul class="s-footer__social">
+                    <li><a href="https://www.facebook.com/chuoitv.ml"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                    <li><a href="https://github.com/tietnhathung/Blog"><i class="fab fa-github" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        <div class="sidebar left">
-            @foreach (var category in ViewBag.ListCate)
-            {
-                <div>
-                    <a href="Home/searchByCategory/@category.ID">@category.name</a>
-                </div>
-            }
-        </div>
-        @RenderBody()
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Blogs Group 4</p>
-        </footer>
-    </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/Scripts/clean-blog.js")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+        <div class="row s-footer__bottom">
+
+            <div class="large-6 tab-full column s-footer__info">
+                <h3 class="h6">About</h3>
+
+                <p>
+                    Nhóm 4 gồm 4 thành viên: Hưng, Giang, Sơn, Thành.
+                </p>
+
+                <p>
+                    Cảm ơn các bạn đã theo dõi!
+                </p>
+            </div>
+
+            <div class="large-6 tab-full column">
+                <div class="row">
+                    <div class="large-6 tab-full column">
+
+                        <h3 class="h6">Photostream</h3>
+
+                        <ul class="photostream group">
+                            <li><a href="#0"><img alt="thumbnail" src="~/Assests/images/1.jpg"></a></li>
+                            <li><a href="#0"><img alt="thumbnail" src="~/Assests/images/2.jpg"></a></li>
+                            <li><a href="#0"><img alt="thumbnail" src="~/Assests/images/3.jpg"></a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="large-6 tab-full column">
+                        <h3 class="h6">Navigate</h3>
+
+                        <ul class="s-footer__list s-footer-list--nav group">
+                            <li><a href="#0">SĐT: 0123456789</a></li>
+                            <li><a href="#0">Email: group4@gmail.com</a></li>
+                            <li><a href="#0">Facebook: Group 4</a></li>
+                            <li><a href="#0">Github: Group 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ss-copyright">
+                <span>© Copyright Keep It Simple 2020</span>
+                <span>Design by <a href="https://www.facebook.com/GiangNguyen6998">Group4</a></span>
+            </div>
+
+        </div>
+
+
+        <div class="ss-go-top">
+            <a class="smoothscroll" title="Back to Top" href="#top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0l8 9h-6v15h-4v-15h-6z" /></svg>
+            </a>
+        </div>
+
+    </footer>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+
 </body>
+
 </html>
