@@ -8,12 +8,6 @@
     <div class="container cta-100 ">
         <div class="container">
             <div class="row blog">
-                @using (Html.BeginForm("Index","Home",FormMethod.Get))
-                {
-                <p>
-                    @*Title: @Html.TextBox("SearchString") --- Category: @Html.DropDownList("categoryID", "All") <input type="submit" value="Tìm kiếm" />*@
-                </p>
-                }
                 <div class="col-md-12">
                     <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
                         <!-- Carousel items -->
@@ -50,13 +44,9 @@
                                         </div>
                                     }
                                 </div>
-                                <!--.row-->
                             </div>
-                            <!--.item-->
                         </div>
-                        <!--.carousel-inner-->
                     </div>
-                    <!--.Carousel-->
                 </div>
             </div>
         </div>

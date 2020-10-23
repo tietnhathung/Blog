@@ -4,16 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/Site.css")
-    @Styles.Render("~/Content/clean-blog.css")
-    @Styles.Render("~/Content/all.css")
-    @Styles.Render("~/Content/fontawesome.css")
-    <link href="~/Assests/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/Assests/css/datepicker3.css" rel="stylesheet">
-    <link href="~/Assests/css/bootstrap-table.css" rel="stylesheet">
-    <link href="~/Assests/css/styles.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/styles.css" rel="stylesheet">
+    <link href="~/Content/all.css" rel="stylesheet">
+    <link href="~/Content/clean-blog.css" rel="stylesheet">
+    <link href="~/Content/fontawesome.css" rel="stylesheet">
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
 </head>
@@ -30,24 +28,44 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Category", "Category", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    <li><a class="btn btn-secondary dropdown-toggle" href="Home/Index">Home</a></li>
+                    <li>
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Category
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <ul>
+                                @foreach (var category in ViewBag.ListCate)
+                                {
+                                <li>  <a href="Home/searchByCategory/@category.ID">@category.name</a></li>
+                                }
+                            </ul>
+                            </div>
+                    </li>
+                    <li><a class="btn btn-secondary dropdown-toggle" href="Home/Contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
+        <div class="sidebar left">
+            @foreach (var category in ViewBag.ListCate)
+            {
+                <div>
+                    <a href="Home/searchByCategory/@category.ID">@category.name</a>
+                </div>
+            }
+        </div>
         @RenderBody()
-        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Blogs Group 4</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Assets/js/clean-blog.js")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/Scripts/clean-blog.js")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>

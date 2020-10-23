@@ -1,0 +1,17 @@
+﻿@model Blog.Models.Category
+@{
+    ViewBag.Title = "searchByCategory";
+    Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<ul>
+    @foreach (var blog_category in Model.Blog_category)
+    {
+    <li>
+        blog_category.Blog.title
+    </li>
+    }
+
+</ul>
+
