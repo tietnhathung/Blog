@@ -805,6 +805,7 @@
     <Content Include="Areas\web_admin\assets\ckfinder\translations.txt" />
     <Content Include="Areas\web_admin\assets\css\select2.min.css" />
     <Content Include="Areas\web_admin\assets\css\style.css" />
+    <Content Include="Areas\web_admin\assets\image\avatar.jpg" />
     <Content Include="Areas\web_admin\assets\image\bg.jpg" />
     <Content Include="Areas\web_admin\assets\image\logo.png" />
     <Content Include="Areas\web_admin\assets\image\logo70x70.png" />
