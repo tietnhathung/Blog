@@ -19,10 +19,11 @@ namespace Blog.Areas.web_admin.Data
             DataBaseBlog db = new DataBaseBlog();
             return db.Blogs.OrderByDescending(c => c.create_at).Take(pana).ToList();
         }
-        public static void addObject(FormCollection collection )
+        public static void addObject(FormCollection collection , UserSection section)
         {
             DataBaseBlog db = new DataBaseBlog();
             Models.Blog obj = new Models.Blog();
+
 
             obj.ID = Guid.NewGuid().ToString();
             obj.title = collection["title"];
@@ -30,7 +31,7 @@ namespace Blog.Areas.web_admin.Data
             obj.thumbnail = collection["thumbnail"];
             obj.status = 2;
             obj.create_at = DateTime.Now;
-            obj.create_by = "1";
+            obj.create_by = section.UserID;
 
 
             db.Set(obj.GetType()).Add(obj);

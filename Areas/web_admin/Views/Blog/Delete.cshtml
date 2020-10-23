@@ -22,7 +22,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.contents)
+            @Html.Raw(Model.contents)
         </dd>
 
         <dt>
@@ -38,16 +38,9 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.create_by)
+            @Html.DisplayFor(model => model.User.full_name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.thumbnail)

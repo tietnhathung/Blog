@@ -39,7 +39,9 @@ namespace Blog.Areas.web_admin.Controllers
             {
                 try
                 {
-                    blogsData.addObject(collection);
+                    var section = (UserSection)Session[Constants.USER_SECTION];
+
+                    blogsData.addObject(collection, section);
                     TempData["Msg"] = "Tạo thành công bài viết " + collection["title"];
                     return RedirectToAction("Index");
                 }
