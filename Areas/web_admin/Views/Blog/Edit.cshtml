@@ -1,7 +1,7 @@
 ﻿@model Blog.Models.Blog
 
 @{
-    ViewBag.Title = "Cập nhật bài viết";
+    ViewBag.Title = "Thêm mới bài viết";
     Layout = "~/Areas/web_admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,54 +9,68 @@
 <div class="masonry-item">
     <div class="bgc-white p-20 bd">
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Create", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-horizontal">
-                <h4>Cập nhật bài viết</h4>
-                <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.ID)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
+                <h4>Thêm mới bài viết</h4>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-12" for="categories">Chọn thể loại</label>
                             <div class="col-md-offset-2 col-md-12">
                                 <select id="categories" name="categories" multiple="multiple" class="form-control">
-                                    @foreach ( var cate in Model.Blog_category)
+                                    @foreach (var cate in Model.Blog_category)
                                     {
-                                    <option value="@cate.Category.ID" selected="selected" >
+                                    <option selected value="@cate.Category.ID">
                                         @cate.Category.name
                                     </option>
                                     }
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "control-label col-md-12" })
-                            <div class="col-md-offset-2 col-md-12">
-                                @Html.TextBoxFor(m => m.thumbnail, new { @class = "form-control", @type = "file" })
-                                @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    @Html.LabelFor(model => model.thumbnail, htmlAttributes: new { @class = "control-label col-md-12" })
+                                    @{
+                                        var urlImg = Model.thumbnail != null ? Model.thumbnail : "/Areas/web_admin/assets/image/unnamed.png";
+                                    }
+                                    <div class="col-md-offset-2 col-md-12">
+                                        <div id="chon-anh"
+                                        style="min-height: 200px;
+                                        cursor:pointer ;
+                                        background-image: url( @urlImg );
+                                        background-size:cover;
+                                        background-position: center;"
+                                         class="col-md-12">
+                                        </div>
+                                        @Html.HiddenFor(m => m.thumbnail, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.contents, htmlAttributes: new { @class = "control-label col-md-12" })
                     <div class="col-md-12">
                         <div id="editor">
-                            @Html.Raw(Model.contents)
                         </div>
                         @Html.HiddenFor(model => model.contents)
                         @Html.ValidationMessageFor(model => model.contents, "", new { @class = "text-danger" })
@@ -65,15 +79,13 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-12">
-                        <input type="submit" id="submit" value="Cập nhật" class="btn btn-success" />
+                        <input type="submit" id="submit" value="Thêm mới" class="btn btn-success" />
                         @Html.ActionLink("Quay lại", "Index", "Blog", new { }, new { @class = "btn btn-default " })
                     </div>
                 </div>
             </div>
         }
-
     </div>
-
 </div>
 
 @section styles {
@@ -93,47 +105,55 @@
 @section scripts {
 
     @Scripts.Render("~/Areas/web_admin/assets/js/ckeditor.js")
+    @Scripts.Render("~/Areas/web_admin/assets/ckfinder/ckfinder.js")
     @Scripts.Render("~/Areas/web_admin/assets/js/select2.min.js")
 
     <script>
+        $("#chon-anh").on('click', function () {
+            let finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#thumbnail').val(url);
+                $("#chon-anh").css('background-image', `url(${url})`);
+            };
+            finder.popup();
 
+        });
         $(function () {
-            $('#categories').select2({
-                placeholder: 'Chọn biến',
-                ajax: {
-                    url: "/web_admin/Category/SelectCategories",
-                    dataType: 'json',
-                    method: "GET",
-                    delay: 500,
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (value) {
-                                return {
-                                    text: value.name,
-                                    id: value.ID
-                                }
-                            })
-                        };
-                    },
-                    cache: true
-                }
-            });
-
-
-
+            setTimeout(function () {
+                $('#categories').select2({
+                    placeholder: 'Chọn biến',
+                    ajax: {
+                        url: "/web_admin/Category/SelectCategories",
+                        dataType: 'json',
+                        method: "GET",
+                        delay: 500,
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (value) {
+                                    return {
+                                        text: value.name,
+                                        id: value.ID
+                                    }
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+            }, 500);
         });
 
         let editor;
         ClassicEditor
-        .create(document.querySelector('#editor'), {
+            .create(document.querySelector('#editor'), {
 
-        })
-        .then(newEditor => {
-            editor = newEditor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            })
+            .then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
         $("#submit").on('click', function () {
             $("#contents").val(editor.getData());
         });

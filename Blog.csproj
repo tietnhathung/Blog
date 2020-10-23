@@ -809,6 +809,7 @@
     <Content Include="Areas\web_admin\assets\image\logo.png" />
     <Content Include="Areas\web_admin\assets\image\logo70x70.png" />
     <Content Include="Areas\web_admin\assets\image\logo_mini.png" />
+    <Content Include="Areas\web_admin\assets\image\unnamed.png" />
     <Content Include="Areas\web_admin\assets\js\bundle.js" />
     <Content Include="Areas\web_admin\assets\js\ckeditor.js" />
     <Content Include="Areas\web_admin\assets\js\custom.js" />

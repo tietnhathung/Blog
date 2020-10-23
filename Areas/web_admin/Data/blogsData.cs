@@ -27,6 +27,7 @@ namespace Blog.Areas.web_admin.Data
             obj.ID = Guid.NewGuid().ToString();
             obj.title = collection["title"];
             obj.contents = collection["contents"];
+            obj.thumbnail = collection["thumbnail"];
             obj.status = 2;
             obj.create_at = DateTime.Now;
             obj.create_by = "1";
@@ -50,6 +51,7 @@ namespace Blog.Areas.web_admin.Data
 
             obj.title = collection["title"];
             obj.contents = collection["contents"];
+            obj.thumbnail = collection["thumbnail"];
 
             db.SaveChanges();
 
